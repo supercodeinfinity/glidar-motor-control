@@ -1,21 +1,20 @@
-# GLiDAR — My Robotics Control Software
+# GLiDAR — Robotics Control Software
 
 **GLiDAR (Guided Lithotripsy with Dynamic Autonomous Robot)**  
 *University of Miami | Student Research Internship | 2026*
 
 ## About the project
 
-How do you make three different motors and a medical laser work through one controller? That was one of the main challenges I worked on during my summer internship with the University of Miami's GLiDAR team.
-
+I am grateful to have conducted an internship this summer with the University of Miami's GLiDAR team.
 GLiDAR is a research project exploring robot-assisted ureteroscopy, a procedure that uses a thin, camera-equipped instrument to reach kidney stones. My work focused on bringing separate motor controls, controller inputs, position feedback, and laser commands together using a **Teensy 4.1 microcontroller**. I also helped organize and connect the electronics that made the software work with the physical robot.
 
 This repository shares **five selected programs I worked on**. They are part of a larger team project, not the full GLiDAR system.
 
 ## Watch the system in action
 
-**[GLiDAR demonstration video]([INSERT_PUBLIC_VIDEO_URL_HERE](https://www.youtube.com/watch?v=Hd46UH1fy5Y))**
+**[GLiDAR demonstration video](https://www.youtube.com/watch?v=Hd46UH1fy5Y)**
 
-The video shows the robotic ureteroscope, handheld controller, electronics, endoscopic camera view, and laser activation during a supervised laboratory demonstration. Our team navigated to and fired on all **eight simulated stone targets** during the benchtop session. It was exciting to see the different parts of the system finally work through one interface!
+The video shows the robotic ureteroscope, handheld controller, electronics, endoscopic camera view, and laser activation during a supervised laboratory demonstration. A novice operator navigated to and fired on all **eight simulated stone targets** during the benchtop session.
 
 ## What I worked on
 
@@ -29,7 +28,7 @@ I wrote and developed code that brings the ureteroscope's three degrees of freed
 | **Rotation** | NEMA 17 stepper motor | Turns the ureteroscope around its axis |
 | **Tip flexion** | ST3020 smart servo | Bends the tip to point in different directions |
 
-I used encoder readings to track linear and rotational movement, calculated how motor motion translates into instrument movement, and added status messages to help with testing. Because the tip does not bend at a constant rate, I used different calibration factors for three bending ranges and smoother transitions between them.
+I used encoder readings to control and verify linear and rotational movement, utilizing a 1X decoding program inspired by previous code. Because the ureteroscope tip does not bend at a constant rate, I used different calibration factors for three bending ranges and smoother transitions between them. I used serial monitor prints to help with testing.
 
 ### Turning a game controller into a robot controller
 
@@ -49,11 +48,11 @@ Each Arduino sketch is in its own folder with a matching `.ino` filename.
 
 | Program | What it shows |
 | --- | --- |
-| [`3_DOF_Serial_Monitor_Laser`](3_DOF_Serial_Monitor_Laser/3_DOF_Serial_Monitor_Laser.ino) | Moves the three axes using typed commands in the Arduino Serial Monitor, with separate laser commands. Linear and rotation commands are relative; tip bending uses a target angle. |
-| [`3_DOF_USB_Controller_Mapping_Laser`](3_DOF_USB_Controller_Mapping_Laser/3_DOF_USB_Controller_Mapping_Laser.ino) | Walks through identifying the game controller's sticks, buttons, and triggers before using them to operate the robot. |
-| [`3_DOF_USB_Controller_Standardized_Controls_Laser`](3_DOF_USB_Controller_Standardized_Controls_Laser/3_DOF_USB_Controller_Standardized_Controls_Laser.ino) | Uses preset game-controller mappings for more convenient operation, plus position feedback, movement limits, and laser commands. |
-| [`Standalone_Controller_Diagnostics`](Standalone_Controller_Diagnostics/Standalone_Controller_Diagnostics.ino) | Displays joystick, button, trigger, and connection readings. It **does not** move motors or activate laser outputs. |
-| [`GLiDAR_Quest3_VR_Control.py`](GLiDAR_Quest3_VR_Control.py) | **Work in progress:** reads Meta Quest 3 inputs to move the GLiDAR model in NVIDIA Isaac Sim and includes code to send movement requests toward a Teensy over serial. Full physical–digital synchronization is not yet demonstrated. |
+| [`Serial_Motion_Laser.ino`](Serial_Motion_Laser.ino) | Controls all three robotic movements through typed commands in the Arduino Serial Monitor, along with separate laser commands. Linear and rotation commands are relative, while tip bending uses a target angle. |
+| [`Gamepad_Setup_And_Control_Laser.ino`](Gamepad_Setup_And_Control_Laser.ino) | Guides users through identifying the game controller's joysticks, buttons, and triggers before using them to control the robot's movements and laser interface. |
+| [`Gamepad_Preset_Controls_Laser.ino`](Gamepad_Preset_Controls_Laser.ino) | Uses predefined game-controller mappings for easier operation, including proportional joystick control, encoder feedback, movement limits, and laser commands. |
+| [`USB_Controller_Diagnostics.ino`](USB_Controller_Diagnostics.ino) | Displays controller connections, joystick movements, button presses, and trigger readings to help troubleshoot the controller. This program does not activate motors or laser outputs. |
+| [`IsaacSim_VR_Teensy_Bridge_Draft.py`](IsaacSim_VR_Teensy_Bridge_Draft.py) | **Work in progress:** Uses Meta Quest 3 inputs to control the robotic digital twin in NVIDIA Isaac Sim and includes serial communication code intended to connect with the physical Teensy system. Full physical–digital synchronization is still being developed and tested. |
 
 ## My next step: connecting the physical robot and digital twin
 

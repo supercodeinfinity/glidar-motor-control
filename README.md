@@ -13,7 +13,7 @@ This repository shares **five selected programs I worked on**. They are part of 
 
 ## Watch the system in action
 
-**[GLiDAR demonstration video](INSERT_PUBLIC_VIDEO_URL_HERE)**
+**[GLiDAR demonstration video]([INSERT_PUBLIC_VIDEO_URL_HERE](https://www.youtube.com/watch?v=Hd46UH1fy5Y))**
 
 The video shows the robotic ureteroscope, handheld controller, electronics, endoscopic camera view, and laser activation during a supervised laboratory demonstration. Our team navigated to and fired on all **eight simulated stone targets** during the benchtop session. It was exciting to see the different parts of the system finally work through one interface!
 
